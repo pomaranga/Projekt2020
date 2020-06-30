@@ -25,6 +25,14 @@ class Ship(Sprite): #baza obiektu statku
         self.image = IMG['ship']
         self.speed = 6
         self.rect = self.image.get_rect(topleft=(375, 540))
+        
+     def ruchy(self, toLeft): #ruchy obiektu
+        if toLeft:
+            self.x = self.x + (Ship.right - Ship.left)
+        else:
+            self.x = self.x + (Ship.left - Ship.right)
+        if self.x > width:
+            self.x = 0
     
 def setup():
     size(1280, 720)
