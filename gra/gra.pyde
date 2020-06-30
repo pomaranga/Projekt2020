@@ -75,6 +75,7 @@ def setup():
     myFont = createFont("Book Antiqua", 15)
     textFont(myFont)
     pass
+    global tlo
     tlo = Tlo()
     powitanie = Powitanie()
     start = Start()
@@ -84,3 +85,12 @@ def setup():
 
 def draw():
     pass
+
+def mouseClicked():
+    global x
+    x = mouseX
+    global y
+    y = mouseY
+    if x > 480 and x < 800 and y > 570 and y < 650:
+        clear()
+        tlo.wyswietl(kosmos)
