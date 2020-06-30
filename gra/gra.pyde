@@ -41,6 +41,16 @@ class Powitanie():
         textSize(50)
         fill(0, 0, 0)
         text("Hello! Press start to begin.", width/2, height/2)
+        
+class Start():
+    def pokaz(self):
+        strokeWeight(5)
+        fill(184, 57, 90)
+        rect(width/2, height/2+250, width/4, 80)
+        textSize(45)
+        fill(171, 207, 210)
+        text("Start!", width/2, height/2+265)
+        
 
 class Ship(Sprite): #baza obiektu statku
     def __init__(self):
@@ -66,9 +76,11 @@ def setup():
     textFont(myFont)
     pass
     tlo = Tlo()
-    tlo.wyswietl(kosmos)
     powitanie = Powitanie()
+    start = Start()
+    tlo.wyswietl(kosmos)
     powitanie.wyswietl()
+    start.pokaz()
 
 def draw():
     pass
