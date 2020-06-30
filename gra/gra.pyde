@@ -14,6 +14,11 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
 YELLOW = (240 ,255, 0)
+PURPLE = (255, 0, 255)
+ORANGE = (255, 140, 0)
+CHOCOLATE = (123, 63, 0)
+PINK = (255, 192, 203)
+GREY = (128, 128, 128)
 
 class Ship(Sprite): #baza obiektu statku
     def __init__(self):
