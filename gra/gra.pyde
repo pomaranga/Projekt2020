@@ -3,12 +3,8 @@
 import sys
 import random
 
-class Sprite():
-    def __init__(self, image, speed):
-        self.image = image
-        self.speed = speed
-
 #Colors
+
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
@@ -20,13 +16,39 @@ CHOCOLATE = (123, 63, 0)
 PINK = (255, 192, 203)
 GREY = (128, 128, 128)
 
+#ZMIENNE
+
+global kosmos, Komandor #przez Komandor rozumiem gracza. 
+kosmos = "kosmos.jpg"
+
+#KLASY
+
+class Sprite():
+    def __init__(self, image, speed):
+        self.image = image
+        self.speed = speed
+        
+class Tlo():
+    def wyswietl(self,img):
+        img = loadImage(kosmos)
+        image(img, width/2, height/2)
+        
+class Powitanie():
+    def wyswietl(self):
+        strokeWeight(0)
+        fill(252, 237, 10)
+        rect(width/2,height/2-10, width/2, 100)
+        textSize(50)
+        fill(0, 0, 0)
+        text("Hello! Press start to begin.", width/2, height/2)
+
 class Ship(Sprite): #baza obiektu statku
     def __init__(self):
         self.image = IMG['ship']
         self.speed = 6
         self.rect = self.image.get_rect(topleft=(375, 540))
         
-     def ruchy(self, toLeft): #ruchy obiektu
+    def ruchy(self, toLeft): #ruchy obiektu
         if toLeft:
             self.x = self.x + (Ship.right - Ship.left)
         else:
@@ -37,12 +59,16 @@ class Ship(Sprite): #baza obiektu statku
 def setup():
     size(1280, 720)
     frameRate(30)
+    imageMode(CENTER)
+    textAlign(CENTER)
+    rectMode(CENTER)
     myFont = createFont("Book Antiqua", 15)
     textFont(myFont)
-    img = loadImage("bg_robocze_TWH.jpg")
-    background('img')
-    global ekran_startowy, Komandor #przez Komandor rozumiem gracza. 
     pass
+    tlo = Tlo()
+    tlo.wyswietl(kosmos)
+    powitanie = Powitanie()
+    powitanie.wyswietl()
 
 def draw():
     pass
