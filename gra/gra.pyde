@@ -24,7 +24,7 @@ GREY = (128, 128, 128)
 global kosmos, Komandor #przez Komandor, intro rozumiem gracza
 kosmos = "kosmos.jpg"
 intro = "Elite Dangerous intro.mp3" 
-tlo2 = "bg_robocze_TWH.jpg"
+tlo2 = "bg_robocze_TWH.jpg" 
 
 #KLASY
 
@@ -35,26 +35,28 @@ class Sprite():
         
 class Tlo():
     def wyswietl(self,img):
-        img = loadImage(kosmos)
+        img = loadImage(tlo2) #jest na razie tylko na próbe
         image(img, width/2, height/2)
         
 class Powitanie():
     def wyswietl(self):
         strokeWeight(0)
-        fill(252, 237, 10)
+        fill(184, 57, 90, 80)
         rect(width/2,height/2-10, width/2, 100)
-        textSize(50)
+        myFont = createFont("Candara Bold", 50)
+        textFont(myFont)
         fill(0, 0, 0)
         text("Hello! Press start to begin.", width/2, height/2)
         
 class Start():
     def pokaz(self):
-        strokeWeight(5)
-        fill(184, 57, 90)
+        strokeWeight(0)
+        fill(184, 57, 90, 80)
         rect(width/2, height/2+250, width/4, 80)
-        textSize(45)
-        fill(171, 207, 210)
-        text("Start!", width/2, height/2+265)
+        myFont = createFont("Candara Bold", 45)
+        textFont(myFont)
+        fill(255)
+        text("START!", width/2, height/2+265)
 
 
 class Logowanie(): #to na razie nie działa ale będzie :D
