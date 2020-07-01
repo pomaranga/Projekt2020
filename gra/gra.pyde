@@ -1,10 +1,12 @@
-add_library('sound') #musicie sobie miski doinstalowac bibliotkę - sketch - import library - sound i będzię dzwięk! <3
+add_library('sound') #musicie sobie miski doinstalowac bibliotkę - sketch - import library - Add Library - sound i będzię dzwięk! <3
 ###### I niech stanie się gra #######
 
 import sys
 import random
 import time
 import processing.sound
+add_library('pdf')
+
 
 #Colors
 
@@ -24,7 +26,9 @@ GREY = (128, 128, 128)
 global kosmos, Komandor #przez Komandor, intro rozumiem gracza
 kosmos = "kosmos.jpg"
 intro = "Elite Dangerous intro.mp3" 
-tlo2 = "bg_robocze_TWH.jpg"
+tlo2 = "bg_robocze2_TWH.png" #screen CMDR KartonowyMakaron The Winged Hussars 
+komputer_pokladowy = "gretting-commanders.mp3"
+login = "bg_robocze_TWH.jpg"
 
 #KLASY
 
@@ -35,26 +39,28 @@ class Sprite():
         
 class Tlo():
     def wyswietl(self,img):
-        img = loadImage(kosmos)
+        img = loadImage(tlo2) #jest na razie tylko na próbe
         image(img, width/2, height/2)
         
 class Powitanie():
     def wyswietl(self):
         strokeWeight(0)
-        fill(252, 237, 10)
+        fill(184, 57, 90, 80)
         rect(width/2,height/2-10, width/2, 100)
-        textSize(50)
+        myFont = createFont("Candara Bold", 50)
+        textFont(myFont)
         fill(0, 0, 0)
         text("Hello! Press start to begin.", width/2, height/2)
         
 class Start():
     def pokaz(self):
-        strokeWeight(5)
-        fill(184, 57, 90)
+        strokeWeight(0)
+        fill(184, 57, 90, 80)
         rect(width/2, height/2+250, width/4, 80)
-        textSize(45)
-        fill(171, 207, 210)
-        text("Start!", width/2, height/2+265)
+        myFont = createFont("Candara Bold", 45)
+        textFont(myFont)
+        fill(255)
+        text("START!", width/2, height/2+265)
 
 
 class Logowanie(): #to na razie nie działa ale będzie :D
@@ -71,7 +77,7 @@ class Wyjdz():
         fill(255, 192, 203)
         rect(width/2, height/2+120, width/3, 90)
         textSize(40)
-        fill(236, 69, 153)
+        #fill(236, 69, 153)
 
         #text("Are you sure you want to leave?",width/2, height/2) # <---- nakłada się na poczatkowy napis czy chcesz zacząć dlatego wykomentowałam
         #text("Are you sure you want to leave?",width/2, height/2)
@@ -97,12 +103,13 @@ def setup():
     imageMode(CENTER)
     textAlign(CENTER)
     rectMode(CENTER)
-    myFont = createFont("Book Antiqua", 15)
-    textFont(myFont)
+    #myFont = createFont("Book Antiqua", 15)
+    #textFont(myFont)
     pass
-    global tlo
+    global tlo, login
     tlo = Tlo()
-
+    login = loadImage("bg_robocze.TWH.jpg")
+    print(type(log))
     logowanie = Logowanie()
     powitanie = Powitanie()
     start = Start()
@@ -113,12 +120,16 @@ def setup():
     wyjdz.zobacz()
     
     #dzwiek
+
     intro = SoundFile(this, "Elite Dangerous intro.mp3")
     intro.play()
+    komputer_pokladowy = SoundFile(this, "gretting-commanders.mp3")
+    komputer_pokladowy.play()
 
     
 def draw():
     pass
+
 
 def mouseClicked():
     global x
@@ -128,3 +139,5 @@ def mouseClicked():
     if x > 480 and x < 800 and y > 570 and y < 650:
         clear()
         tlo.wyswietl(kosmos)
+        text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 580, 300)
+        fill (255,255,255,70)
