@@ -56,6 +56,7 @@ class Start():
         fill(171, 207, 210)
         text("Start!", width/2, height/2+265)
 
+
 class Logowanie(): #to na razie nie działa ale będzie :D
     def zaloguj(self, tlo2):
         tlo2 = loadImage(tlo2)
@@ -63,6 +64,7 @@ class Logowanie(): #to na razie nie działa ale będzie :D
         textSize(20)
         text("Witaj w kosmosie, Komandorze!")
     
+
 class Wyjdz():
     def zobacz(self):
         strokeWeight(5)
@@ -70,7 +72,10 @@ class Wyjdz():
         rect(width/2, height/2+120, width/3, 90)
         textSize(40)
         fill(236, 69, 153)
+
         #text("Are you sure you want to leave?",width/2, height/2) # <---- nakłada się na poczatkowy napis czy chcesz zacząć dlatego wykomentowałam
+        #text("Are you sure you want to leave?",width/2, height/2)
+
         
 class Ship(Sprite): #baza obiektu statku
     def __init__(self):
@@ -97,6 +102,7 @@ def setup():
     pass
     global tlo
     tlo = Tlo()
+
     logowanie = Logowanie()
     powitanie = Powitanie()
     start = Start()
@@ -105,11 +111,11 @@ def setup():
     powitanie.wyswietl()
     start.pokaz()
     wyjdz.zobacz()
-
     
     #dzwiek
     intro = SoundFile(this, "Elite Dangerous intro.mp3")
     intro.play()
+
     
 def draw():
     pass
