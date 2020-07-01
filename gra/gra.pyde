@@ -1,3 +1,4 @@
+
 add_library('sound') #musicie sobie miski doinstalowac bibliotkę - sketch - import library - Add Library - sound i będzię dzwięk! <3
 ###### I niech stanie się gra #######
 
@@ -32,7 +33,7 @@ login = "bg_robocze_TWH.jpg"
 
 #KLASY
 
-class Sprite():
+class Sprite(): # <3
     def __init__(self, image, speed):
         self.image = image
         self.speed = speed
@@ -83,7 +84,7 @@ class Wyjdz():
         #text("Are you sure you want to leave?",width/2, height/2)
 
         
-class Ship(Sprite): #baza obiektu statku
+class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od wrogich
     def __init__(self):
         self.image = IMG['ship']
         self.speed = 6
@@ -129,6 +130,8 @@ def setup():
     
 def draw():
     pass
+    # może ktoś się odważy wprowadzić ruch gracza/przeciwników/strzał?
+    # trzeba rozróżnić sytuacje: menu od gry na jakąś zmienną logiczną
 
 
 def mouseClicked():
@@ -136,7 +139,7 @@ def mouseClicked():
     x = mouseX
     global y
     y = mouseY
-    if x > 480 and x < 800 and y > 570 and y < 650:
+    if x > 480 and x < 800 and y > 570 and y < 650: #trzeba będzie dodać warunek, że gdy w menu
         clear()
         tlo.wyswietl(kosmos)
         text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 580, 300)
