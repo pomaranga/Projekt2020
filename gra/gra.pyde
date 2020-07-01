@@ -51,7 +51,15 @@ class Start():
         fill(171, 207, 210)
         text("Start!", width/2, height/2+265)
         
-
+class Wyjdz():
+    def zobacz(self):
+        strokeWeight(5)
+        fill(255, 192, 203)
+        rect(width/2, height/2+120, width/3, 90)
+        textSize(40)
+        fill(236, 69, 153)
+        text("Are you sure you want to leave?",width/2, height/2)
+        
 class Ship(Sprite): #baza obiektu statku
     def __init__(self):
         self.image = IMG['ship']
@@ -79,10 +87,12 @@ def setup():
     tlo = Tlo()
     powitanie = Powitanie()
     start = Start()
+    wyjdz = Wyjdz()
     tlo.wyswietl(kosmos)
     powitanie.wyswietl()
     start.pokaz()
-
+    wyjdz.zobacz()
+    
 def draw():
     pass
 
