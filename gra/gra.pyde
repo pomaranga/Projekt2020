@@ -24,7 +24,9 @@ GREY = (128, 128, 128)
 
 #ZMIENNE
 
-global kosmos, Komandor #przez Komandor, intro rozumiem gracza
+global kosmos, Komandor, ekran #przez Komandor, intro rozumiem gracza
+
+ekran = 1 #ekran= 1=menu 2=gra
 kosmos = "kosmos.jpg"
 intro = "Elite Dangerous intro.mp3" 
 tlo2 = "bg_robocze2_TWH.png" #screen CMDR KartonowyMakaron The Winged Hussars 
@@ -76,12 +78,17 @@ class Wyjdz():
     def zobacz(self):
         strokeWeight(5)
         fill(255, 192, 203)
-        rect(width/2, height/2+120, width/3, 90)
+        rect(width/2, height/2-15, width/2, 90)
         textSize(40)
-        #fill(236, 69, 153)
-
-        #text("Are you sure you want to leave?",width/2, height/2) # <---- nakłada się na poczatkowy napis czy chcesz zacząć dlatego wykomentowałam
-        #text("Are you sure you want to leave?",width/2, height/2)
+        fill(236, 69, 153)
+        text("Are you sure you want to leave?",width/2, height/2)
+        
+class Zamknij():
+    def pokaz(self):
+        fill(178,34,34)
+        square (0,0,100)
+        line(2,2,48,48)
+        line(48,2, 2, 48)
 
         
 class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od wrogich
@@ -132,18 +139,18 @@ def setup():
     #myFont = createFont("Book Antiqua", 15)
     #textFont(myFont)
     pass
-    global tlo, login
+    global tlo, login, wyjdz, zamknij
     tlo = Tlo()
     login = loadImage("bg_robocze.TWH.jpg")
     print(type(log))
     logowanie = Logowanie()
     powitanie = Powitanie()
+    zamknij = Zamknij()
     start = Start()
     wyjdz = Wyjdz()
     tlo.wyswietl(kosmos)
     powitanie.wyswietl()
     start.pokaz()
-    wyjdz.zobacz()
     
     #dzwiek
 
@@ -156,16 +163,22 @@ def setup():
 def draw():
     pass
     # może ktoś się odważy wprowadzić ruch gracza/przeciwników/strzał?
-    # trzeba rozróżnić sytuacje: menu od gry na jakąś zmienną logiczną
-
-
-def mouseClicked():
-    global x
+    
+    global x, y, ekran
     x = mouseX
-    global y
     y = mouseY
-    if x > 480 and x < 800 and y > 570 and y < 650: #trzeba będzie dodać warunek, że gdy w menu
+    
+    if mousePressed and (mouseButton == LEFT) and x > 480 and x < 800 and y > 570 and y < 650 and ekran == 1:
+        ekran = 2
         clear()
         tlo.wyswietl(kosmos)
-        text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 580, 300)
+        zamknij.pokaz()
         fill (255,255,255,70)
+        text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 580, 300)
+    else:
+        pass
+    
+    if mousePressed and (mouseButton == LEFT) and y > 0 and y < 100 and x > 0 and x < 100 and ekran == 2:
+        clear()
+        tlo.wyswietl(kosmos)
+        wyjdz.zobacz()
