@@ -238,8 +238,11 @@ def wprowadzImie():
     powitanie.wyswietl()
     start.pokaz() 
         
-def koniecGry():
+def koniecGry(lost, lost_count):
     background(127)
+    #if lives <= 0 or player.health <= 0:
+            #lost = True
+            #lost_count += 1
     
 def keyReleased():
     global imie
