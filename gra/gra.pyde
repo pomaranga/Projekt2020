@@ -6,8 +6,13 @@ import sys
 import random
 import time
 import processing.sound
-add_library('pdf')
-
+w = 1366 
+h = 768
+statusGry = 1 # 1 - wprowadź imię
+              # 2 - graj
+              # 3 - koniec gry 
+imie = ''
+punkty = 0
 
 #Colors
 
@@ -25,13 +30,11 @@ GREY = (128, 128, 128)
 #ZMIENNE
 
 global kosmos, Komandor, ekran #przez Komandor, intro rozumiem gracza
-
-ekran = 1 #ekran= 1=menu 2=gra
 kosmos = "kosmos.jpg"
 intro = "Elite Dangerous intro.mp3" 
 tlo2 = "bg_robocze2_TWH.png" #screen CMDR KartonowyMakaron The Winged Hussars 
 komputer_pokladowy = "gretting-commanders.mp3"
-login = "bg_robocze_TWH.jpg"
+tlo = "bg_robocze3_TWH.jpg"
 
 #KLASY
 
@@ -40,40 +43,34 @@ class Sprite(): # <3
         self.image = image
         self.speed = speed
         
-class Tlo():
-    def wyswietl(self,img):
-        img = loadImage(tlo2) #jest na razie tylko na próbe
-        image(img, width/2, height/2)
-        
 class Powitanie():
     def wyswietl(self):
         strokeWeight(0)
         fill(184, 57, 90, 80)
-        rect(width/2,height/2-10, width/2, 100)
+        rect(80, 90, 600, 100)
         myFont = createFont("Candara Bold", 50)
         textFont(myFont)
         fill(0, 0, 0)
-        text("Hello! Press start to begin.", width/2, height/2)
+        text("Hello! Press start to begin.", 80, 100)
         
 class Start():
     def pokaz(self):
         strokeWeight(0)
         fill(184, 57, 90, 80)
-        rect(width/2, height/2+250, width/4, 80)
+        rect(90, 280, 400, 150)
         myFont = createFont("Candara Bold", 45)
         textFont(myFont)
         fill(255)
-        text("START!", width/2, height/2+265)
+        text("START!", 90, 265)
+        text("Kliknij enter", 90, 330)
 
-
-class Logowanie(): #to na razie nie działa ale będzie :D
-    def zaloguj(self, tlo2):
-        tlo2 = loadImage(tlo2)
-        image(tlo2, width/2, height/2)
-        textSize(20)
-        text("Witaj w kosmosie, Komandorze!")
+class Zamknij():
+    def pokaz(self):
+        fill(255)
+        myFont = createFont("Candara Bold", 25)
+        text("ESC", 690, 450)
+        
     
-
 class Wyjdz():
     def zobacz(self):
         strokeWeight(5)
@@ -82,13 +79,6 @@ class Wyjdz():
         textSize(40)
         fill(236, 69, 153)
         text("Are you sure you want to leave?",width/2, height/2)
-        
-class Zamknij():
-    def pokaz(self):
-        fill(178,34,34)
-        square (0,0,100)
-        line(2,2,48,48)
-        line(48,2, 2, 48)
 
         
 class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od wrogich
@@ -129,6 +119,23 @@ class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od w
 
     def update(self, keys, *args):
         game.screen.blit(self.image, self.rect)
+        
+def wprowadzImie():
+    tlo2 = loadImage("bg_robocze2_TWH.png")
+    background(tlo2)
+    textSize(32)
+    fill(255)
+    text('Your Name Commander: ' + imie, - w / 4 + 420, 190)
+    powitanie = Powitanie()
+    start = Start()
+    powitanie.wyswietl()
+    start.pokaz() 
+        
+def koniecGry():
+    background(127)
+    textSize(32)
+    fill(255)
+    text(imie + 'zdobyles/as ' + str(punkty) + ' punktow', - w / 2 + 30, 0)
     
 def setup():
     size(1280, 720)
@@ -139,18 +146,9 @@ def setup():
     #myFont = createFont("Book Antiqua", 15)
     #textFont(myFont)
     pass
-    global tlo, login, wyjdz, zamknij
-    tlo = Tlo()
-    login = loadImage("bg_robocze.TWH.jpg")
+    global tlo
+    tlo = loadImage
     print(type(log))
-    logowanie = Logowanie()
-    powitanie = Powitanie()
-    zamknij = Zamknij()
-    start = Start()
-    wyjdz = Wyjdz()
-    tlo.wyswietl(kosmos)
-    powitanie.wyswietl()
-    start.pokaz()
     
     #dzwiek
 
@@ -161,24 +159,11 @@ def setup():
 
     
 def draw():
-    pass
-    # może ktoś się odważy wprowadzić ruch gracza/przeciwników/strzał?
+    translate(630, 300) # przsuń środek układu współrzędnych na środek okna
+    if statusGry == 1: # wprowadź imię
+        wprowadzImie()
+    elif statusGry == 2: # graj
+        graj()
+    elif statusGry == 3: #wyświetl ekran końcowy
+        koniecGry()
     
-    global x, y, ekran
-    x = mouseX
-    y = mouseY
-    
-    if mousePressed and (mouseButton == LEFT) and x > 480 and x < 800 and y > 570 and y < 650 and ekran == 1:
-        ekran = 2
-        clear()
-        tlo.wyswietl(kosmos)
-        zamknij.pokaz()
-        fill (255,255,255,70)
-        text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 580, 300)
-    else:
-        pass
-    
-    if mousePressed and (mouseButton == LEFT) and y > 0 and y < 100 and x > 0 and x < 100 and ekran == 2:
-        clear()
-        tlo.wyswietl(kosmos)
-        wyjdz.zobacz()
