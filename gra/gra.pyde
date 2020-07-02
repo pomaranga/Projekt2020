@@ -219,6 +219,15 @@ class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, któr
     def setDefault(self):
         self.amount = self.defaultAmount
         
+class Przeciwnik:
+  def__init__(self): 
+    self.pozycja_przeciwnika= PVector(0, 0)
+  def zderzenie:
+    if self.pozycja=self.pozycja_przeciwnika:
+      lives==-1
+    else:
+      pass
+        
 #class Blocker(sprite.Sprite):
  #   def __init__(self, size, color, row, column):
   #      sprite.Sprite.__init__(self)
