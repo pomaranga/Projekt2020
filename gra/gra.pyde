@@ -218,15 +218,23 @@ class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, któr
         
     def setDefault(self):
         self.amount = self.defaultAmount
+    
+    def rysuj(self):
+        fill(255, 0, 0)
+        myFont = createFont("Candara Bold", 50)
+        textFont(myFont)
+        text("liczba zyc: " + str(self.amount), width/2 + 175, 60)
+
         
 class Przeciwnik:
-  def__init__(self): 
-    self.pozycja_przeciwnika= PVector(0, 0)
-  def zderzenie:
-    if self.pozycja=self.pozycja_przeciwnika:
-      lives==-1
-    else:
-      pass
+    def __init__(self, pozycja):
+        self.pozycja = pozycja
+
+    def zderzenie(self, pociski):
+        for i in pociski:
+            if i.pozycja == self.pozycja:
+                return True
+        return False
         
 #class Blocker(sprite.Sprite):
  #   def __init__(self, size, color, row, column):
