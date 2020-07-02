@@ -155,7 +155,33 @@ class Statek():
         self.orientacja += 0.18
         if self.orientacja >= TWO_PI:
             self.orientacja -= TWO_PI
+            
+class Pocisk():
+    maksymalnaPredkosc = 8 # maksymalna prędkość pocisku
+    def __init__(self, arg_pozycja, arg_predkosc):
+        self.pozycja = arg_pozycja
+        self.predkosc = arg_predkosc
+        self.predkosc.setMag(Pocisk.maksymalnaPredkosc)
+        self.czasZycia = 40 # przez ile ramek ma żyć ten pocisk
+        self.rozmiar = 5
+    
+    def animuj(self):
+        self.pozycja.x += self.predkosc.x
+        self.pozycja.y += self.predkosc.y
 
+        self.pozycja.x += self.predkosc.x;
+        self.pozycja.y += self.predkosc.y;
+ 
+
+        self.czasZycia -= 1   
+    
+    def rysuj(self):
+        noStroke()
+        fill(255, 0, 0)
+        circle(self.pozycja.x, self.pozycja.y, 2 * self.rozmiar)
+    
+    def czyJestMartwy(self):
+        return self.czasZycia <= 0
             
  class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
     def __init__(self):
@@ -186,8 +212,6 @@ class Statek():
         #self.row = row
         #self.column = column
 
-    def update(self, keys, *args):
-        game.screen.blit(self.image, self.rect)
         
         
 def wprowadzImie():
