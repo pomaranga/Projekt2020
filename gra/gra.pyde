@@ -226,7 +226,7 @@ class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, któr
         text("liczba zyc: " + str(self.amount), width/2 + 175, 60)
 
         
-class Przeciwnik:
+class Przeciwnik():
     def __init__(self, pozycja):
         self.pozycja = pozycja
 
