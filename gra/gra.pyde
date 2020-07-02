@@ -172,7 +172,6 @@ class Pocisk():
         self.pozycja.x += self.predkosc.x;
         self.pozycja.y += self.predkosc.y;
  
-
         self.czasZycia -= 1   
     
     def rysuj(self):
@@ -183,7 +182,7 @@ class Pocisk():
     def czyJestMartwy(self):
         return self.czasZycia <= 0
             
- class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
+class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
     def __init__(self):
         self.points = 0
         self.highestScore = -1
@@ -256,6 +255,28 @@ def graj(): #na razie puki nie ma gry
  
     if len(pociski) != 0 and pociski[0].czyJestMartwy(): # wystarczy sprawdzić tylko pierwszy pocisk - następne nie mogą być jeszcze martwe
         pociski.pop(0)
+            
+def keyPressed():
+    if statusGry == 2:           
+        if keyCode == UP:
+            statek.doPrzodu()
+        if keyCode == DOWN:
+            statek.doTylu()
+        if keyCode == LEFT:
+            statek.obrotLewo()
+        if keyCode == RIGHT:
+            statek.obrotPrawo()
+        if key == ' ':
+            nowyPocisk = statek.strzel()
+            if nowyPocisk is not None:
+                pociski.append(nowyPocisk)
+                
+def keyReleased():
+    global imie
+    global statusGry    
+    if statusGry == 2:
+        if keyCode == UP or keyCode == DOWN:
+            statek.bezNapedu()        
             
 def keyTyped():
     global imie
