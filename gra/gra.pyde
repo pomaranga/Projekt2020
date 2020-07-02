@@ -130,6 +130,32 @@ class Statek():
         circle(0, 0, 5 * self.rozmiar)
         line(0, 0, 50, 0)
         popMatrix() # przywróć macierz transformacji
+        
+    
+    def doPrzodu(self): # ustaw predkość do przodu
+        PVector.fromAngle(self.orientacja, self.przyspieszenie)
+        self.przyspieszenie.limit(self.maksymalnePrzyspieszenie)
+        
+    def doTylu(self): # ustaw prędkość do tyłu
+        PVector.fromAngle(self.orientacja, self.przyspieszenie)
+        self.przyspieszenie.x = -self.przyspieszenie.x # 
+        self.przyspieszenie.y = -self.przyspieszenie.y # odwróć wektor
+        self.przyspieszenie.limit(self.maksymalnePrzyspieszenie)
+                
+    def bezNapedu(self): # wyzeruj przyspieszenie
+        self.przyspieszenie.x = 0
+        self.przyspieszenie.y = 0
+
+    def obrotLewo(self): # skręć w lewo
+        self.orientacja -= 0.18
+        if self.orientacja < 0:
+            self.orientacja += TWO_PI
+    
+    def obrotPrawo(self): # skręć w prawo
+        self.orientacja += 0.18
+        if self.orientacja >= TWO_PI:
+            self.orientacja -= TWO_PI
+
             
  class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
     def __init__(self):
@@ -169,6 +195,9 @@ def wprowadzImie():
     background(tlo2)
     textSize(32)
     fill(255)
+    text('Gora/dol - poruszanie do przodu/do tylu', - w / 4 + 420, -70)
+    text('Lewo/prawo - obrot', - w / 4 + 420, -30)
+    text('Spacja - strzal', - w / 4 + 420, 10)
     text('Your Name Commander: ' + imie, - w / 4 + 420, 190)
     powitanie = Powitanie()
     start = Start()
@@ -177,9 +206,7 @@ def wprowadzImie():
         
 def koniecGry():
     background(127)
-    textSize(32)
-    fill(255)
-    text(imie + 'zdobyles/as ' + str(punkty) + ' punktow', - w / 2 + 30, 0)
+    
 def keyReleased():
     global imie
     global statusGry    
@@ -188,17 +215,23 @@ def keyReleased():
     if statusGry == 3:
         koniecGry()
         
+statek = Statek()
+pociski = []
+kamienie = []    
         
 def graj(): #na razie puki nie ma gry
-    clear()
     global statusGry
-    powi = loadImage("bg_robocze4_TWH.png")
-    background(powi)
-    textSize(40)
-    text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 70, 70)
-    fill (255,255,255,70)
-    zamknij = Zamknij()
-    zamknij.pokaz()
+    background(0)
+    
+    statek.animuj()
+    statek.rysuj()      
+        
+    for pocisk in pociski:
+        pocisk.animuj()
+        pocisk.rysuj()
+ 
+    if len(pociski) != 0 and pociski[0].czyJestMartwy(): # wystarczy sprawdzić tylko pierwszy pocisk - następne nie mogą być jeszcze martwe
+        pociski.pop(0)
             
 def keyTyped():
     global imie
