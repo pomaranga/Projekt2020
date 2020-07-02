@@ -92,7 +92,7 @@ class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od w
             self.x = self.x + (Ship.right - Ship.left)
         else:
             self.x = self.x + (Ship.left - Ship.right)
-        if self.x > width:
+        if self.x > w:
             self.x = 0
             
 #class Bullets(sprite.Sprite): #też przyda się myślę :D
@@ -136,7 +136,8 @@ def koniecGry():
     textSize(32)
     fill(255)
     text(imie + 'zdobyles/as ' + str(punkty) + ' punktow', - w / 2 + 30, 0)
-    def keyReleased():
+    
+def keyReleased():
     global imie
     global statusGry    
     if statusGry == 2:
