@@ -31,7 +31,7 @@ PINK = (255, 192, 203)
 GREY = (128, 128, 128)
 
 #ZMIENNE
-
+LANGUAGE='PL' 
 global kosmos, Komandor #przez Komandor, intro rozumiem gracza
 kosmos = "kosmos.jpg"
 #intro = "Elite Dangerous intro.mp3" 
@@ -66,7 +66,7 @@ class Powitanie():
         myFont = createFont("Candara Bold", 50)
         textFont(myFont)
         fill(0, 0, 0)
-        text("Witaj! Nacisnij start by zacząć.", 80, 100)
+        text("Witaj! Nacisnij start by zacząć." if LANGUAGE=='PL' else 'Welcome! Click start to begin', 80, 100)
         
 class Start():
     def pokaz(self):
@@ -77,7 +77,7 @@ class Start():
         textFont(myFont)
         fill(255)
         text("START!", 90, 265)
-        text("Kliknij enter", 90, 330)
+        text("Kliknij enter" if LANGUAGE=='PL' else 'Click ENTER', 90, 330)
         
 class Restart():
     def pokaz(self):
@@ -104,7 +104,7 @@ class Wyjdz():
         rect(w/2, h/2-15, w/2, 90)
         textSize(40)
         fill(236, 69, 153)
-        text("Jestes pewny ze chcesz wyjsc?",w/2, h/2)
+        text("Jestes pewny ze chcesz wyjsc?" if LANGUAGE=='PL' else "youre sure you want to leave" ,w/2, h/2)
 
         
 class Statek():
@@ -265,17 +265,22 @@ class Przeciwnik():
         #self.row = row
         #self.column = column
 
-        
+def change_language():
+    global LANGUAGE
+    if mousePressed:
+        if mouseX>0 and mouseX<250 and mouseY<45 and mouseY>15:
+            LANGUAGE='EN' if LANGUAGE=='PL' else 'PL'        
         
 def wprowadzImie():
     tlo2 = loadImage("bg_robocze2_TWH.png")
     background(tlo2)
     textSize(32)
     fill(255)
-    text('Gora/dol - poruszanie do przodu/do tylu', - w / 4 + 420, -70)
-    text('Lewo/prawo - obrot', - w / 4 + 420, -30)
-    text('Spacja - strzal', - w / 4 + 420, 10)
-    text('Twoje imie dowodco: ' + imie, - w / 4 + 420, 190)
+    text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-w/4-160,-260)
+    text('Gora/dol - poruszanie do przodu/do tylu' if LANGUAGE=='PL' else 'Up/down - move forward/backward', - w / 4 + 420, -70)
+    text('Lewo/prawo - obrot' LANGUAGE=='PL' else 'Left/right - rotation', - w / 4 + 420, -30)
+    text('Spacja - strzal' if LANGUAGE=='PL' else 'Space - shot', - w / 4 + 420, 10)
+    text('Twoje imie dowodco: ' + imie if LANGUAGE=='PL' else 'Your name commandor: ' + imie, - w / 4 + 420, 190)
     powitanie = Powitanie()
     start = Start()
     powitanie.wyswietl()
@@ -381,6 +386,7 @@ def setup():
     
 def draw():
     translate(630, 300) # przsuń środek układu współrzędnych na środek okna
+    change_language()
     if statusGry == 1: # wprowadź imię
         wprowadzImie()
     elif statusGry == 2: # graj
