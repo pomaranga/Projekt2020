@@ -55,7 +55,7 @@ class Powitanie():
         myFont = createFont("Candara Bold", 50)
         textFont(myFont)
         fill(0, 0, 0)
-        text("Hello! Press start to begin.", 80, 100)
+        text("Witaj! Nacisnij start by zacząć.", 80, 100)
         
 class Start():
     def pokaz(self):
@@ -76,7 +76,7 @@ class Restart():
         textFont(myFont)
         fill(225)
         text("RESTART", 50, height/2-10)
-        text("kliknij delete", 50, height/2+50)
+        text("Kliknij delete", 50, height/2+50)
         
         
 class Zamknij():
@@ -93,7 +93,7 @@ class Wyjdz():
         rect(w/2, h/2-15, w/2, 90)
         textSize(40)
         fill(236, 69, 153)
-        text("Are you sure you want to leave?",w/2, h/2)
+        text("Jestes pewny ze chcesz wyjsc?",w/2, h/2)
 
         
 class Statek():
@@ -223,7 +223,7 @@ class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, któr
         fill(255, 0, 0)
         myFont = createFont("Candara Bold", 50)
         textFont(myFont)
-        text("liczba zyc: " + str(self.amount), width/2 + 175, 60)
+        text("Liczba zyc: " + str(self.amount), width/2 + 175, 60)
 
         
 class Przeciwnik():
@@ -258,7 +258,7 @@ def wprowadzImie():
     text('Gora/dol - poruszanie do przodu/do tylu', - w / 4 + 420, -70)
     text('Lewo/prawo - obrot', - w / 4 + 420, -30)
     text('Spacja - strzal', - w / 4 + 420, 10)
-    text('Your Name Commander: ' + imie, - w / 4 + 420, 190)
+    text('Twoje imie dowodco: ' + imie, - w / 4 + 420, 190)
     powitanie = Powitanie()
     start = Start()
     powitanie.wyswietl()
@@ -287,7 +287,7 @@ statek = Statek()
 pociski = []
 kamienie = []    
         
-def graj(): #na razie póki nie ma gry
+def graj(): # na razie póki nie ma gry
     global statusGry
     background(0)
     restart = Restart()
