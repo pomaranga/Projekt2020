@@ -278,7 +278,7 @@ def wprowadzImie():
     fill(255)
     text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-w/4-160,-260)
     text('Gora/dol - poruszanie do przodu/do tylu' if LANGUAGE=='PL' else 'Up/down - move forward/backward', - w / 4 + 420, -70)
-    text('Lewo/prawo - obrot' LANGUAGE=='PL' else 'Left/right - rotation', - w / 4 + 420, -30)
+    text('Lewo/prawo - obrot' if LANGUAGE=='PL' else 'Left/right - rotation', - w / 4 + 420, -30)
     text('Spacja - strzal' if LANGUAGE=='PL' else 'Space - shot', - w / 4 + 420, 10)
     text('Twoje imie dowodco: ' + imie if LANGUAGE=='PL' else 'Your name commandor: ' + imie, - w / 4 + 420, 190)
     powitanie = Powitanie()
