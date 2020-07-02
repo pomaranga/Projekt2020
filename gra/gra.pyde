@@ -386,7 +386,7 @@ def ruch_prawy():
     x = 280 # przykładowa wartość
   player.setx(x)
   
-    #bind klawiszy
+    #bind klawiszy + import turtle
 turtle.listen()
 turtle.onkey(ruch_lewy, "Left")
 turtle.onkey(ruch_prawy, "Right")
