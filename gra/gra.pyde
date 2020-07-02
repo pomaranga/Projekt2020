@@ -97,27 +97,28 @@ class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od w
             self.x = self.x + (Ship.left - Ship.right)
         if self.x > width:
             self.x = 0
-class Bullets(sprite.Sprite): #też przyda się myślę :D
-    def __init__(self, xpoz, ypoz, kierunek, speed, filename, strona):
-        sprite.Sprite.__init__(self)
-        self.image = IMAGES[filename]
-        self.rect = self.image.get_rect(topleft=(xpos, ypos))
-        self.speed = speed
-        self.direction = direction
-        self.side = side
-        self.filename = filename
+            
+#class Bullets(sprite.Sprite): #też przyda się myślę :D
+ #   def __init__(self, xpoz, ypoz, kierunek, speed, filename, strona):
+  #      sprite.Sprite.__init__(self)
+   #     self.image = IMAGES[filename]
+    #    self.rect = self.image.get_rect(topleft=(xpos, ypos))
+    #    self.speed = speed
+     #   self.direction = direction
+      #  self.side = side
+       # self.filename = filename
         
-class Blocker(sprite.Sprite):
-    def __init__(self, size, color, row, column):
-        sprite.Sprite.__init__(self)
-        self.height = size
-        self.width = size
-        self.color = color
-        self.image = Powierzchnia((self.width, self.height)) #trzeba tylko dodać obrazek tych blokerów
-        self.image.fill(self.color)
-        self.rect = self.image.get_rect()
-        self.row = row
-        self.column = column
+#class Blocker(sprite.Sprite):
+ #   def __init__(self, size, color, row, column):
+  #      sprite.Sprite.__init__(self)
+   #     self.height = size
+    #    self.width = size
+     #   self.color = color
+      #  self.image = Powierzchnia((self.width, self.height)) #trzeba tylko dodać obrazek tych blokerów
+       # self.image.fill(self.color)
+        #self.rect = self.image.get_rect()
+        #self.row = row
+        #self.column = column
 
     def update(self, keys, *args):
         game.screen.blit(self.image, self.rect)
