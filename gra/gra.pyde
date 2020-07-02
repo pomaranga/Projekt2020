@@ -279,7 +279,7 @@ statek = Statek()
 pociski = []
 kamienie = []    
         
-def graj(): #na razie puki nie ma gry
+def graj(): #na razie póki nie ma gry
     global statusGry
     background(0)
     restart = Restart()
