@@ -68,6 +68,17 @@ class Start():
         text("START!", 90, 265)
         text("Kliknij enter", 90, 330)
         
+class Restart():
+    def pokaz(self):
+        fill(255,255,0)
+        rect(90, 280, 400, 150)
+        myFont = createFont("Candara Bold", 50)
+        textFont(myFont)
+        fill(0)
+        text("RESTART", width/2, height/2)
+        text("kliknij spacje", width/2, height/2-20)
+        
+        
 class Zamknij():
     def pokaz(self):
         fill(255)
