@@ -163,6 +163,12 @@ class Statek():
         self.przyspieszenie.x = -self.przyspieszenie.x # 
         self.przyspieszenie.y = -self.przyspieszenie.y # odwróć wektor
         self.przyspieszenie.limit(self.maksymalnePrzyspieszenie)
+    
+    def naUkos(self): # ustaw prędkość na ukos
+        PVector.fromAngle(self.orientacja, self.przyspieszenie)
+        self.przyspieszenie.x = self.przyspieszenie.x # tego nie odwaracm
+        self.przyspieszenie.y = -self.przyspieszenie.y # odwróć wektor
+        self.przyspieszenie.limit(self.maksymalnePrzyspieszenie)
                 
     def bezNapedu(self): # wyzeruj przyspieszenie
         self.przyspieszenie.x = 0
