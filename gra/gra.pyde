@@ -41,6 +41,17 @@ powi = "bg_robocze4_TWH.png"
 
 #KLASY
 
+class Pauzowanie():
+  def pokaz(self):
+    strokeWeight(0)
+    fill(255,255,0)
+    rect(w/2, h/2, w, h)
+    myFont = createFont("Candara Bold", 110)
+    textFont(myFont)
+    fill(0, 0, 0)
+    text("Co jest byczq?? Czemu zapauzowałeś?? Wciśnij se <STRZAŁ>, aby wrócić do akcji!", w/4, h/4)
+    
+    
 class Sprite(): # <3
     def __init__(self, image, speed):
         self.image = image
