@@ -75,10 +75,10 @@ class Wyjdz():
     def zobacz(self):
         strokeWeight(5)
         fill(255, 192, 203)
-        rect(width/2, height/2-15, width/2, 90)
+        rect(w/2, h/2-15, w/2, 90)
         textSize(40)
         fill(236, 69, 153)
-        text("Are you sure you want to leave?",width/2, height/2)
+        text("Are you sure you want to leave?",w/2, h/2)
 
         
 class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od wrogich
