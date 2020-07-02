@@ -99,6 +99,21 @@ class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od w
         if self.x > w:
             self.x = 0
             
+ class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
+    def __init__(self):
+        self.points = 0
+        self.highestScore = -1
+        
+    def increase(self):
+        self.points += 1
+        
+    def reset(self):
+        self.points = 0
+    
+    def setHighest(self):
+        if self.points > self.highestScore:
+            self.highestScore = self.points
+            
 #class Bullets(sprite.Sprite): #też przyda się myślę :D
  #   def __init__(self, xpoz, ypoz, kierunek, speed, filename, strona):
   #      sprite.Sprite.__init__(self)
