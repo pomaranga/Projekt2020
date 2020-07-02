@@ -371,5 +371,26 @@ def draw():
     elif statusGry == 3: #wyświetl ekran końcowy
         koniecGry()
     
+   #Ruch 
+def ruch_lewy():
+  x = player.xcor()
+  x -= playerspeed
+  if x < -280: # przykładowa wartość
+    x = -280 # przykładowa wartość
+  player.setx(x)
+  
+def ruch_prawy():
+  x = player.xcor()
+  x += playerspeed
+  if x > -280: # przykładowa wartość # przykładowa wartość
+    x = 280 # przykładowa wartość
+  player.setx(x)
+  
+    #bind klawiszy
+turtle.listen()
+turtle.onkey(ruch_lewy, "Left")
+turtle.onkey(ruch_prawy, "Right")
+    
+    
     # może ktoś się odważy wprowadzić ruch gracza/przeciwników/strzał?
     # trzeba rozróżnić sytuacje: menu od gry na jakąś zmienną logiczną
