@@ -74,9 +74,9 @@ class Restart():
         rect(90, 280, 400, 150)
         myFont = createFont("Candara Bold", 50)
         textFont(myFont)
-        fill(0)
-        text("RESTART", width/2, height/2)
-        text("kliknij spacje", width/2, height/2-20)
+        fill(225)
+        text("RESTART", 50, height/2-10)
+        text("kliknij delete", 50, height/2+50)
         
         
 class Zamknij():
@@ -282,7 +282,8 @@ kamienie = []
 def graj(): #na razie puki nie ma gry
     global statusGry
     background(0)
-    
+    restart = Restart()
+    restart.pokaż()
     statek.animuj()
     statek.rysuj()      
         
@@ -313,7 +314,9 @@ def keyReleased():
     global statusGry    
     if statusGry == 2:
         if keyCode == UP or keyCode == DOWN:
-            statek.bezNapedu()        
+            statek.bezNapedu()  
+        if key == DELETE:
+          statusGry = 1
             
 def keyTyped():
     global imie
@@ -321,8 +324,6 @@ def keyTyped():
     if statusGry == 1:        
         if key == ENTER:
             statusGry = 2   
-        if key == ESC:
-            statusGry = 3
         if key == BACKSPACE:
             if len(imie) != 0:
                 imie = imie[:-1] # usuń ostatni znak
