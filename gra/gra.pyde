@@ -238,11 +238,16 @@ def wprowadzImie():
     powitanie.wyswietl()
     start.pokaz() 
         
-def koniecGry(lost, lost_count):
+def koniecGry(lost, lost_count, lives, run):
     background(127)
     #if lives <= 0 or player.health <= 0:
             #lost = True
             #lost_count += 1
+    #if lost:
+           #if lost_count > 0:
+           #    run = False
+           #else:
+           #    continue
     
 def keyReleased():
     global imie
@@ -313,6 +318,7 @@ def setup():
     imageMode(CENTER)
     textAlign(CENTER)
     rectMode(CENTER)
+    frameRate(60)
     #myFont = createFont("Book Antiqua", 15)
     #textFont(myFont)
     pass
