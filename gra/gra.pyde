@@ -85,19 +85,51 @@ class Wyjdz():
         text("Are you sure you want to leave?",w/2, h/2)
 
         
-class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od wrogich
-    def __init__(self):
-        self.image = IMG['ship']
-        self.speed = 6
-        self.rect = self.image.get_rect(topleft=(375, 540))
-        
-    def ruchy(self, toLeft): #ruchy obiektu
-        if toLeft:
-            self.x = self.x + (Ship.right - Ship.left)
+class Statek():
+    maksymalnaPredkosc = 6 # maksymalna prędkość statku
+    maksymalnePrzyspieszenie = 6 # maksymalne przyspieszenie statku    
+    def __init__(self):    
+        self.pozycja = PVector(0, 0)
+        self.predkosc = PVector(0, 0)
+        self.przyspieszenie = PVector(0, 0)
+        self.orientacja = 0 # położenie dzioba statku - kąt w radianach
+        self.ochloniecie = 0 # 'cooldown' strzelania - każda klatka animacji zmniejsza tę wartość o 1. Następny pocisk można wystrzelić tylko gdy == 0
+        self.rozmiar = 8
+
+    def animuj(self):
+        if self.przyspieszenie.magSq() == 0:
+            self.predkosc.x *= 0.98 # 
+            self.predkosc.y *= 0.98 # efekt zwalniania, gdy nie jest trzymany przycisk gazu 
         else:
-            self.x = self.x + (Ship.left - Ship.right)
-        if self.x > w:
-            self.x = 0
+            self.predkosc.x += self.przyspieszenie.x
+            self.predkosc.y += self.przyspieszenie.y
+            self.predkosc.limit(self.maksymalnaPredkosc)
+            
+        self.pozycja.x += self.predkosc.x;
+        self.pozycja.y += self.predkosc.y;
+        self.ochloniecie -= 1
+
+    def strzel(self):
+        if self.ochloniecie > 0:
+            return None
+        
+        # stwórz nowy pocisk z takim kierunkiem, w jakim jest zwrócony statek
+        pozycjaPocisku = self.pozycja.copy()        
+        predkoscPocisku = PVector.fromAngle(self.orientacja)
+        self.ochloniecie = 20
+        return Pocisk(pozycjaPocisku, predkoscPocisku)
+                            
+    def rysuj(self):
+        pushMatrix() # zachowaj macierz transformacji
+        stroke(255) 
+        fill(255)
+        translate(self.pozycja.x, self.pozycja.y) # przesuń środek układu współrzędnych na statek                
+        rotate(self.orientacja) # wykonaj obrót układu współrzędnych o kąt zgodny z orientacją statku.
+                                # Wszystkie operacje na wierzchołkach będą wykonywane w kontekście takiego
+                                # układu. Wywołanie popMatrix() na końcu przywraca układ do poprzedniego stanu.                                        
+        circle(0, 0, 5 * self.rozmiar)
+        line(0, 0, 50, 0)
+        popMatrix() # przywróć macierz transformacji
             
  class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlającą na ekranie wynik
     def __init__(self):
@@ -114,15 +146,7 @@ class Ship(Sprite): #baza obiektu statku, trzeba będzie rozróżnić swój od w
         if self.points > self.highestScore:
             self.highestScore = self.points
             
-#class Bullets(sprite.Sprite): #też przyda się myślę :D
- #   def __init__(self, xpoz, ypoz, kierunek, speed, filename, strona):
-  #      sprite.Sprite.__init__(self)
-   #     self.image = IMAGES[filename]
-    #    self.rect = self.image.get_rect(topleft=(xpos, ypos))
-    #    self.speed = speed
-     #   self.direction = direction
-      #  self.side = side
-       # self.filename = filename
+
         
 #class Blocker(sprite.Sprite):
  #   def __init__(self, size, color, row, column):
