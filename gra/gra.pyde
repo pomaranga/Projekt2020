@@ -208,7 +208,16 @@ class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlając
         if self.points > self.highestScore:
             self.highestScore = self.points
             
-
+class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, która pozwoli na wyświetlenie ilości zyć na ekranie
+    def __init__(self, amount):
+        self.defaultAmount = amount
+        self.amount = amount
+        
+    def lower(self):
+        self.amount -= 1
+        
+    def setDefault(self):
+        self.amount = self.defaultAmount
         
 #class Blocker(sprite.Sprite):
  #   def __init__(self, size, color, row, column):
