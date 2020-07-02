@@ -136,7 +136,40 @@ def koniecGry():
     textSize(32)
     fill(255)
     text(imie + 'zdobyles/as ' + str(punkty) + ' punktow', - w / 2 + 30, 0)
-    
+    def keyReleased():
+    global imie
+    global statusGry    
+    if statusGry == 2:
+        graj()
+    if statusGry == 3:
+        koniecGry()
+        
+        
+def graj(): #na razie puki nie ma gry
+    clear()
+    global statusGry
+    tlo2 = loadImage("bg_robocze2_TWH.png")
+    background(tlo2)
+    textSize(40)
+    text("Welcome to Space Invaders 2.0, Commander. \n The game was created by TCwAK.", 80, 80)
+    fill (255,255,255)
+    zamknij = Zamknij()
+    zamknij.pokaz()
+            
+def keyTyped():
+    global imie
+    global statusGry
+    if statusGry == 1:        
+        if key == ENTER:
+            statusGry = 2   
+        if key == ESC:
+            statusGry = 3
+        if key == BACKSPACE:
+            if len(imie) != 0:
+                imie = imie[:-1] # usuń ostatni znak
+                
+        else:
+            imie = imie + key          
 def setup():
     size(1280, 720)
     frameRate(30)
