@@ -141,7 +141,6 @@ def koniecGry():
     textSize(32)
     fill(255)
     text(imie + 'zdobyles/as ' + str(punkty) + ' punktow', - w / 2 + 30, 0)
-
 def keyReleased():
     global imie
     global statusGry    
