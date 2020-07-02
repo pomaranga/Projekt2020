@@ -172,7 +172,7 @@ def keyTyped():
         else:
             imie = imie + key          
 def setup():
-    size(1280, 720)
+    size(w, h)
     frameRate(30)
     imageMode(CENTER)
     textAlign(CENTER)
