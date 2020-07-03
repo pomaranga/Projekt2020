@@ -393,6 +393,14 @@ def setup():
     komputer_pokladowy = SoundFile(this, "gretting-commanders.mp3")
     komputer_pokladowy.play()
     
+    #regulacja dzwieku
+    if (keyPressed):
+      if (key == "P"): 
+          komputer_pokladowy.stop()
+      if(key == "M"):
+         komputer_pokladowy.play()
+        
+    
     
 def draw():
     translate(630, 300) # przsuń środek układu współrzędnych na środek okna
