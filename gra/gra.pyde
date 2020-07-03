@@ -51,6 +51,16 @@ class Pauzowanie():
     fill(0, 0, 0)
     text("Co jest byczq?? Czemu zapauzowałeś?? Wciśnij se <STRZAŁ>, aby wrócić do akcji!", w/4, h/4)
     
+    #możnaby użyć do pauzy coś z tą komendą:
+    #def pauza():
+      #global pause 
+      #if pause == True:
+        #pause = False
+      #else:
+        #pause = True
+        # i do tego jeszcze onkeypress(pauza, "p")
+        # tylko nie wiem jak to wykorzystać dokładnie w naszej grze
+    
     
 class Sprite(): # <3
     def __init__(self, image, speed):
