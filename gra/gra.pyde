@@ -6,6 +6,7 @@ import sys
 import random
 import time
 import processing.sound
+import turtle
 w = 1366 
 h = 768
 
