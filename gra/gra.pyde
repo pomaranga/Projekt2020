@@ -62,7 +62,7 @@ class Pauzowanie():
         # tylko nie wiem jak to wykorzystać dokładnie w naszej grze
     
     
-class Sprite(): # <3
+class Sprite():
     def __init__(self, image, speed):
         self.image = image
         self.speed = speed
@@ -263,17 +263,18 @@ class Przeciwnik():
                 return True
         return False
         
-#class Blocker(sprite.Sprite):
- #   def __init__(self, size, color, row, column):
-  #      sprite.Sprite.__init__(self)
-   #     self.h = size
-    #    self.= size
-     #   self.color = color
-      #  self.image = Powierzchnia((self.w, self.h)) #trzeba tylko dodać obrazek tych blokerów
-       # self.image.fill(self.color)
-        #self.rect = self.image.get_rect()
-        #self.row = row
-        #self.column = column
+'''class Blocker(sprite.Sprite):
+    def __init__(self, size, color, row, column):
+        sprite.Sprite.__init__(self)
+        self.h = size
+        self.= size
+        self.color = color
+        self.image = Powierzchnia((self.w, self.h)) #trzeba tylko dodać obrazek tych blokerów
+        self.image.fill(self.color)
+        self.rect = self.image.get_rect()
+        self.row = row
+        self.column = column
+'''
 
 def change_language():
     global LANGUAGE
@@ -323,7 +324,7 @@ def graj(): # na razie póki nie ma gry
     global statusGry
     background(0)
     restart = Restart()
-    restart.pokaż()
+    restart.pokaz()
     statek.animuj()
     statek.rysuj()      
         
@@ -428,10 +429,12 @@ def ruch_prawy():
   player.setx(x)
   
     #bind klawiszy + import turtle
+'''--------------------------------nie działą, bo brakuje importu turtle
 turtle.listen()
 turtle.onkey(ruch_lewy, "Left")
 turtle.onkey(ruch_prawy, "Right")
+'''
     
     
-    # może ktoś się odważy wprowadzić ruch gracza/przeciwników/strzał?
-    # trzeba rozróżnić sytuacje: menu od gry na jakąś zmienną logiczną
+    # może ktoś się odważy wprowadzić działanie ruchu gracza/przeciwników/strzał?
+    
