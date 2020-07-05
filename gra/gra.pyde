@@ -69,28 +69,6 @@ class Sprite():
         self.image = image
         self.speed = speed
         
-        
-class Powitanie():
-    def wyswietl(self):
-        strokeWeight(0)
-        fill(184, 57, 90, 80)
-        rect(80, 90, 600, 100)
-        myFont = createFont("Candara Bold", 50)
-        textFont(myFont)
-        fill(0, 0, 0)
-        text("Witaj! Nacisnij start by zacząć." if LANGUAGE=='PL' else 'Welcome! Click start to begin', 80, 100)
-        
-class Start():
-    def pokaz(self):
-        strokeWeight(0)
-        fill(184, 57, 90, 80)
-        rect(90, 280, 400, 150)
-        myFont = createFont("Candara Bold", 45)
-        textFont(myFont)
-        fill(255)
-        text("START!", 90, 265)
-        text("Kliknij enter" if LANGUAGE=='PL' else 'Click ENTER', 90, 330)
-        
 class Restart():
     def pokaz(self):
         fill(255,255,0)
@@ -327,26 +305,60 @@ class Przeciwnik():
         self.column = column
 '''
 
-def change_language():
+HELP = 'NH'
+    
+def buttonsMenu():
+    global statusGry
     global LANGUAGE
+    global HELP
+   
     if mousePressed:
-        if mouseX>0 and mouseX<250 and mouseY<45 and mouseY>15:
-            LANGUAGE='EN' if LANGUAGE=='PL' else 'PL'        
-        
-def wprowadzImie():
+        if mouseX>60 and mouseX<460 and mouseY>275 and mouseY<324:
+            statusGry = 2
+        if mouseX>60 and mouseX<460 and mouseY>375 and mouseY<424:
+            LANGUAGE='EN' if LANGUAGE=='PL' else 'PL'
+        if mouseX>60 and mouseX<460 and mouseY>425 and mouseY<475:
+            HELP='YH' if HELP=='NH' else 'NH'
+        if mouseX>60 and mouseX<460 and mouseY>565 and mouseY<615:
+            exit()
+                                  
+class Help():
+    def pokaz(self):
+        stroke(255)
+        fill(49, 51, 50, 160)
+        rect(280, 90, 800, 600)
+        fill(255)
+        text('Pomoc' if LANGUAGE=='PL' else 'Help', 270, -170)
+        text('Gora/dol - poruszanie do przodu/do tylu' if LANGUAGE=='PL' else 'Up/down - move forward/backward', 270, -70)
+        text('Lewo/prawo - obrot' if LANGUAGE=='PL' else 'Left/right - rotation', 270 , -30)
+        text('Spacja - strzal' if LANGUAGE=='PL' else 'Space - shot', 270, 10)
+        text('P - ...' if LANGUAGE=='PL' else 'P - ...', 270 , 50)
+        text('M - ...' if LANGUAGE=='PL' else 'M - ...', 270, 90)
+                                
+                                                                                
+def mainMenu():
+    global HELP
+    global BSCORE
     tlo2 = loadImage("bg_robocze2_TWH.png")
     background(tlo2)
-    textSize(32)
+    stroke(255)
+    fill(49, 51, 50, 160)
+    rect(-370, 84, 400, 766)
     fill(255)
-    text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-w/4-160,-260)
-    text('Gora/dol - poruszanie do przodu/do tylu' if LANGUAGE=='PL' else 'Up/down - move forward/backward', - w / 4 + 420, -70)
-    text('Lewo/prawo - obrot' if LANGUAGE=='PL' else 'Left/right - rotation', - w / 4 + 420, -30)
-    text('Spacja - strzal' if LANGUAGE=='PL' else 'Space - shot', - w / 4 + 420, 10)
-    text('Twoje imie dowodco: ' + imie if LANGUAGE=='PL' else 'Your name commandor: ' + imie, - w / 4 + 420, 190)
-    powitanie = Powitanie()
-    start = Start()
-    powitanie.wyswietl()
-    start.pokaz() 
+    textSize(70)
+    text("Super Gra",-370,-160)
+    textSize(15)
+    text("Ver. 2.0.7.7",-380, 455)
+    textSize(32)
+    text('Twoje imie dowodco: ' if LANGUAGE=='PL' else 'Your name commandor: ', -365, 240)
+    text(imie, -380, 280)
+    text("Rozpocznij gre" if LANGUAGE=='PL' else 'Start the game' ,-380, 10)
+    text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-380, 110)
+    text("Pomoc" if LANGUAGE=='PL' else 'Help' ,-380, 160)
+    text("Wyjdz" if LANGUAGE=='PL' else 'Quit' ,-380, 400)
+    if HELP == 'YH':
+        help = Help()
+        help.pokaz()
         
 def koniecGry(lost, lost_count, lives, run):
     background(127)
@@ -457,9 +469,9 @@ def setup():
     
 def draw():
     translate(630, 300) # przsuń środek układu współrzędnych na środek okna
-    change_language()
     if statusGry == 1: # wprowadź imię
-        wprowadzImie()
+        buttonsMenu()
+        mainMenu()
     elif statusGry == 2: # graj
         graj()
     elif statusGry == 3: #wyświetl ekran końcowy
