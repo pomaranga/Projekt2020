@@ -274,25 +274,25 @@ class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlając
         if self.points > self.highestScore:
             self.highestScore = self.point
             
-def killpoints(self):
-    przeciwnik = 1 #poziom przeciwnika zabitego lub jego liczba HP
-    poziom = -1 #Punkty za poziom planszy są naliczane co 5.
-    sco = 1 #liczba punktów za normanego przeciwnika
-    ostatni = False 
-    premia = 20 #premia za przejście poziomu
+    def killpoints(self):
+         przeciwnik = 1 #poziom przeciwnika zabitego lub jego liczba HP
+         poziom = -1 #Punkty za poziom planszy są naliczane co 5.
+         sco = 1 #liczba punktów za normanego przeciwnika
+         ostatni = False 
+         premia = 20 #premia za przejście poziomu
    
-    if (poziom = -1):
-        score = sco*przeciwnik
-        self.points += score 
-    else:
-        score = (poziom/5)+sco*przeciwnik
-        self.points += score
+         if (poziom = -1):
+            score = sco*przeciwnik
+            self.points += score 
+         else:
+            score = (poziom/5)+sco*przeciwnik
+            self.points += score
        
-    if (ostatni = True):
-        if (poziom = 0):
-            poziom = 1
-        score = premia*poziom
-        self.points += score
+        if (ostatni = True):
+            if (poziom = 0):
+                poziom = 1
+                score = premia*poziom
+                self.points += score
             
 class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, która pozwoli na wyświetlenie ilości zyć na ekranie
     def __init__(self, amount):
