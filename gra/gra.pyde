@@ -220,7 +220,19 @@ class Statek():
         self.orientacja += 0.18
         if self.orientacja >= TWO_PI:
             self.orientacja -= TWO_PI
-            
+#class WybuchStatka(sprite.Sprite):
+   #def __init__(self, ship, ):
+       #super(WybuchStatka, self).__init__(statek)
+       #self.image = image['ship']
+       #self.rect = self.image.get_rect(topleft=(ship.rect.x, ship.rect.y))
+       #self.timer = time.get_ticks()
+
+   #def update(self, current_time, args):
+       #passed = current_time - self.timer
+       #if 300 < passed <= 600:
+           #game.screen.blit(self.image, self.rect)
+       #elif 900 < passed:
+           self.kill()
 class Pocisk():
     maksymalnaPredkosc = 8 # maksymalna prędkość pocisku
     def __init__(self, arg_pozycja, arg_predkosc):
