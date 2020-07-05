@@ -276,6 +276,20 @@ class Przeciwnik():
             self.y += 20
             self.x = 20
             self.speed *= -1
+            
+    def multiply():
+      global wrogowie
+      liczba_wrogow = 5 #przykładowe wartości
+      wrogowie = []
+      pozycja = 0
+      for i in range(liczba_wrogow):
+        b = Wrog(pozycja)
+        wrogowie.append(b)
+        pozycja+=50
+        
+      for wrog in wrogowie:
+        pass
+   
 
     def zderzenie(self, pociski):
         for i in pociski:
