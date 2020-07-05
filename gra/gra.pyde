@@ -257,6 +257,15 @@ class Lives():   #na podstawie tej klasy można stworzyć instancje klasy, któr
 class Przeciwnik():
     def __init__(self, pozycja):
         self.pozycja = pozycja
+        self.x = 50 + pozycja
+        self.y = 50
+        self.left = 0
+        self.right = 0
+        self.down = 0
+        self.speed = 10
+    def update(self):
+        self.right = self.x + 1
+        self.x += self.speed
 
     def zderzenie(self, pociski):
         for i in pociski:
