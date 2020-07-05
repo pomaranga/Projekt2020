@@ -6,7 +6,7 @@ import sys
 import random
 import time
 import processing.sound
-import turtle
+#import turtle
 w = 1366 
 h = 768
 
@@ -33,12 +33,13 @@ GREY = (128, 128, 128)
 
 #ZMIENNE
 LANGUAGE='PL' 
-global kosmos, Komandor #przez Komandor, intro rozumiem gracza
+global kosmos, Komandor, gwiazda #przez Komandor, intro rozumiem gracza
 kosmos = "kosmos.jpg"
 #intro = "Elite Dangerous intro.mp3" 
 tlo2 = "bg_robocze2_TWH.png" #screen CMDR KartonowyMakaron The Winged Hussars 
 #komputer_pokladowy = "gretting-commanders.mp3"
 powi = "bg_robocze4_TWH.png"
+
 
 #KLASY
 
@@ -116,6 +117,22 @@ class Wyjdz():
         textSize(40)
         fill(236, 69, 153)
         text("Jestes pewny ze chcesz wyjsc?" if LANGUAGE=='PL' else "youre sure you want to leave" ,w/2, h/2)
+        
+class Gwiazdy():
+    def __init__(self, x, y, speed):
+        self.x = x
+        self.y = y
+        self.speed = speed
+
+    def rusz(self):
+        fill(255, 255, 255)
+        square(self.x, self.y, 5)
+        self.y = self.y + self.speed;
+        if self.y > height:
+            self.y = 0
+            self.x = random.randint(0, 1366)
+            
+gwiazda = Gwiazdy(50, 100, 2)
 
         
 class Statek():
@@ -360,7 +377,8 @@ def graj(): # na razie póki nie ma gry
     restart = Restart()
     restart.pokaz()
     statek.animuj()
-    statek.rysuj()      
+    statek.rysuj()
+    gwiazda.rusz()      
         
     for pocisk in pociski:
         pocisk.animuj()
