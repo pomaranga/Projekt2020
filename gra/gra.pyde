@@ -528,7 +528,18 @@ turtle.listen()
 turtle.onkey(ruch_lewy, "Left")
 turtle.onkey(ruch_prawy, "Right")
 '''
+
+def _collision_found(self, Pocisk, Przeciwnik):
+    if Pocisk.x + Pocisk.width < Przeciwnik.x:
+        return False
+    elif Pocisk.x + Pocisk.width < Pocisk.x:
+        return False
+    elif Pocisk.y + 1 < Przeciwnik.y:
+        return False
+    elif Przeciwnik.y + 8 < Pocisk.y:
+        return False
     
+    return True
     
     # może ktoś się odważy wprowadzić działanie ruchu gracza/przeciwników/strzał?
     
