@@ -69,6 +69,33 @@ class Sprite():
         self.image = image
         self.speed = speed
         
+class Start():
+    iloscZyc = 0
+       
+    def pokaz(self):
+        strokeWeight(0)
+        fill(184, 57, 90, 80)
+        rect(90, 280, 400, 150)
+        myFont = createFont("Candara Bold", 45)
+        textFont(myFont)
+        fill(255)
+        text("test", 90, 265)
+        text("Kliknij enter" if LANGUAGE=='PL' else 'Click ENTER', 90, 330)
+       
+    def ustawPoziomTrudnosci(self, poziom):
+        if poziom == 'latwy':
+            print("Ustawiono poziom łatwy")
+            self.__iloscZyc = 6
+        elif poziom == 'trudny':
+            print("Ustawiono poziom trudny")
+            self.__iloscZyc = 3
+        else:
+            print("Ustawiono poziom łatwy")
+            self.__iloscZyc = 6
+           
+    def czytajPoziomTrudnosci(self):
+        return self.__iloscZyc
+        
 class Restart():
     def pokaz(self):
         fill(255,255,0)
@@ -356,6 +383,9 @@ def mainMenu():
     text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-380, 110)
     text("Pomoc" if LANGUAGE=='PL' else 'Help' ,-380, 160)
     text("Wyjdz" if LANGUAGE=='PL' else 'Quit' ,-380, 400)
+    start = Start()
+    start.ustawPoziomTrudnosci("trudny")
+    start.pokaz() 
     if HELP == 'YH':
         help = Help()
         help.pokaz()
