@@ -3,6 +3,7 @@ add_library('sound') #musicie sobie miski doinstalowac bibliotkę - sketch - imp
 ###### I niech stanie się gra #######
 
 import sys
+import math
 import random
 import time
 import processing.sound
@@ -42,6 +43,9 @@ powi = "bg_robocze4_TWH.png"
 
 
 #KLASY
+
+class Przeciwnik(turtle.Turtle):
+    enemy_speed = 2
 
 class Pauzowanie():
   def pokaz(self):
@@ -331,6 +335,43 @@ class Przeciwnik():
         self.row = row
         self.column = column
 '''
+#Narysuj granicę
+def draw_frame():
+    for i in range(2):
+        frame_pen.forward(1200)
+        frame_pen.left(90)
+        frame_pen.forward(800)
+        frame_pen.left(90)
+
+def kula_ognia():
+    global stan_pocisku
+    if stan_pocisku == "ready":
+        stan_pocisku = "fire"
+#umieszcza kulę tuż nad graczem
+        x = player.xcor()
+        pocisk.setposition(x)
+        pocisk.showturtle()
+
+#Sprawdź kolizję między graczem a wrogiem oraz pociskami i wrogiem.
+
+def is_collision(t1, t2):
+    distance = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2)+math.pow(t1.ycor()-t2.ycor(), 2))
+    if distance < 15:
+        return True
+    else:
+        return False
+
+#przesuń kulę
+if stan_pocisku == "fire":
+        y = pocisk.ycor()
+        y += pocisk_predkosc
+        pocisk.sety(y)
+                        
+#Sprawdź, czy kula osiągnęła szczyt ramki
+if pocisk.ycor() > 370:
+        pocisk.hideturtle()
+        stan_pocisku = "ready"
+                         
 
 HELP = 'NH'
     
