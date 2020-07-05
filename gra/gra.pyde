@@ -266,6 +266,16 @@ class Przeciwnik():
     def update(self):
         self.right = self.x + 1
         self.x += self.speed
+        if not (self.x <= 480):
+            self.down = self.y
+            self.y += 20
+            self.x = 480
+            self.speed *= -1
+        if not (self.x >= 20):
+            self.down = self.y
+            self.y += 20
+            self.x = 20
+            self.speed *= -1
 
     def zderzenie(self, pociski):
         for i in pociski:
