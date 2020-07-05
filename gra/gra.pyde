@@ -232,7 +232,7 @@ class Statek():
        #if 300 < passed <= 600:
            #game.screen.blit(self.image, self.rect)
        #elif 900 < passed:
-           self.kill()
+           #self.kill()
 class Pocisk():
     maksymalnaPredkosc = 8 # maksymalna prędkość pocisku
     def __init__(self, arg_pozycja, arg_predkosc):
