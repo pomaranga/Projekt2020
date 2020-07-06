@@ -596,11 +596,11 @@ def ruch_prawy():
   player.setx(x)
   
     #bind klawiszy + import turtle
-'''--------------------------------nie działą, bo brakuje importu turtle
+
 turtle.listen()
 turtle.onkey(ruch_lewy, "Left")
 turtle.onkey(ruch_prawy, "Right")
-'''
+
 
 def _collision_found(self, Pocisk, Przeciwnik):
     if Pocisk.x + Pocisk.width < Przeciwnik.x:
