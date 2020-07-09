@@ -434,34 +434,50 @@ class Help():
         text('Spacja - strzal' if LANGUAGE=='PL' else 'Space - shot', 270, 10)
         text('P - ...' if LANGUAGE=='PL' else 'P - ...', 270 , 50)
         text('M - ...' if LANGUAGE=='PL' else 'M - ...', 270, 90)
-                                
+
+class Error():
+    def show(self):
+        strokeWeight(7)
+        fill(255,0,0)
+        rect(55, 65, width/2, height/6)
+        fill(0, 0, 0)
+        textSize(25)
+        text("Error! The game can't find essential files.", 65, 70)
+        text("Press 'e' key to exit.", 50, 300)   
+        
+error = Error()                            
                                                                                 
 def mainMenu():
     global HELP
     global BSCORE
-    tlo2 = loadImage("bg_robocze2_TWH.png")
-    background(tlo2)
-    stroke(255)
-    fill(49, 51, 50, 160)
-    rect(-370, 84, 400, 766)
-    fill(255)
-    textSize(70)
-    text("Super Gra",-370,-160)
-    textSize(15)
-    text("Ver. 2.0.7.7",-380, 455)
-    textSize(32)
-    text('Twoje imie dowodco: ' if LANGUAGE=='PL' else 'Your name commandor: ', -365, 240)
-    text(imie, -380, 280)
-    text("Rozpocznij gre" if LANGUAGE=='PL' else 'Start the game' ,-380, 10)
-    text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-380, 110)
-    text("Pomoc" if LANGUAGE=='PL' else 'Help' ,-380, 160)
-    text("Wyjdz" if LANGUAGE=='PL' else 'Quit' ,-380, 400)
-    start = Start()
-    start.ustawPoziomTrudnosci("trudny")
-    start.pokaz() 
-    if HELP == 'YH':
-        help = Help()
-        help.pokaz()
+    try:
+        tlo2 = loadImage("bg_robocze2_TWH.png")
+        background(tlo2)
+        stroke(255)
+        fill(49, 51, 50, 160)
+        rect(-370, 84, 400, 766)
+        fill(255)
+        textSize(70)
+        text("Super Gra",-370,-160)
+        textSize(15)
+        text("Ver. 2.0.7.7",-380, 455)
+        textSize(32)
+        text('Twoje imie dowodco: ' if LANGUAGE=='PL' else 'Your name commandor: ', -365, 240)
+        text(imie, -380, 280)
+        text("Rozpocznij gre" if LANGUAGE=='PL' else 'Start the game' ,-380, 10)
+        text("Zmien jezyk" if LANGUAGE=='PL' else 'Change language' ,-380, 110)
+        text("Pomoc" if LANGUAGE=='PL' else 'Help' ,-380, 160)
+        text("Wyjdz" if LANGUAGE=='PL' else 'Quit' ,-380, 400)
+        start = Start()
+        start.ustawPoziomTrudnosci("trudny")
+        start.pokaz() 
+        if HELP == 'YH':
+            help = Help()
+            help.pokaz()
+    except:
+        error.show()
+        if keyPressed and key == "e" or key == "E":
+            exit()
         
 def koniecGry(lost, lost_count, lives, run):
     background(127)
