@@ -7,7 +7,7 @@ import math
 import random
 import time
 import processing.sound
-import turtle
+#import turtle
 w = 1366 
 h = 768
 
@@ -44,19 +44,19 @@ powi = "bg_robocze4_TWH.png"
 
 #KLASY
 
-class Przeciwnik(turtle.Turtle):
-    enemy_speed = 2
+#class Przeciwnik(turtle.Turtle):
+#    enemy_speed = 2
 
 class Pauzowanie():
-  def pokaz(self):
-    strokeWeight(0)
-    fill(255,255,0)
-    rect(w/2, h/2, w, h)
-    myFont = createFont("Candara Bold", 110)
-    textFont(myFont)
-    fill(0, 0, 0)
-    text("Co jest byczq?? Czemu zapauzowałeś?? Wciśnij se <STRZAŁ>, aby wrócić do akcji!", w/4, h/4)
-    
+    def pokaz(self):
+        strokeWeight(0)
+        fill(255,255,0)
+        rect(w/2, h/2, w, h)
+        myFont = createFont("Candara Bold", 110)
+        textFont(myFont)
+        fill(0, 0, 0)
+        text("Co jest byczq?? Czemu zapauzowałeś?? Wciśnij se <STRZAŁ>, aby wrócić do akcji!", w/4, h/4)
+        
     #możnaby użyć do pauzy coś z tą komendą:
     #def pauza():
       #global pause 
@@ -281,15 +281,15 @@ class Score():  #przy pomocy tej klasy można utworzyć instancje wyświetlając
          ostatni = False 
          premia = 20 #premia za przejście poziomu
    
-         if (poziom = -1):
+         if(poziom == -1):
             score = sco*przeciwnik
             self.points += score 
          else:
             score = (poziom/5)+sco*przeciwnik
             self.points += score
        
-        if (ostatni = True):
-            if (poziom = 0):
+         if (ostatni == True):
+            if (poziom == 0):
                 poziom = 1
                 score = premia*poziom
                 self.points += score
@@ -336,17 +336,17 @@ class Przeciwnik():
             self.speed *= -1
             
     def multiply():
-      global wrogowie
-      liczba_wrogow = 5 #przykładowe wartości
-      wrogowie = []
-      pozycja = 0
-      for i in range(liczba_wrogow):
-        b = Wrog(pozycja)
-        wrogowie.append(b)
-        pozycja+=50
+        global wrogowie
+        liczba_wrogow = 5 #przykładowe wartości
+        wrogowie = []
+        pozycja = 0
+        for i in range(liczba_wrogow):
+            b = Wrog(pozycja)
+            wrogowie.append(b)
+            pozycja+=50
         
-      for wrog in wrogowie:
-        pass
+        for wrog in wrogowie:
+            pass
    
 
     def zderzenie(self, pociski):
@@ -375,8 +375,9 @@ def draw_frame():
         frame_pen.forward(800)
         frame_pen.left(90)
 
+global stan_pocisku
+stan_pocisku = 'ready'
 def kula_ognia():
-    global stan_pocisku
     if stan_pocisku == "ready":
         stan_pocisku = "fire"
 #umieszcza kulę tuż nad graczem
@@ -400,10 +401,10 @@ if stan_pocisku == "fire":
         pocisk.sety(y)
                         
 #Sprawdź, czy kula osiągnęła szczyt ramki
-if pocisk.ycor() > 370:
+'''if pocisk.ycor() > 370:
         pocisk.hideturtle()
         stan_pocisku = "ready"
-                         
+'''                         
 
 HELP = 'NH'
     
@@ -612,11 +613,11 @@ def ruch_prawy():
   player.setx(x)
   
     #bind klawiszy + import turtle
-
+'''
 turtle.listen()
 turtle.onkey(ruch_lewy, "Left")
 turtle.onkey(ruch_prawy, "Right")
-
+'''
 
 def _collision_found(self, Pocisk, Przeciwnik):
     if Pocisk.x + Pocisk.width < Przeciwnik.x:
